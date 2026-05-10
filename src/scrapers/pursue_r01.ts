@@ -38,6 +38,8 @@ interface PursueItem {
   videoId?: string;
   videoTitle?: string;
   videoMp4?: string;
+  embed?: string;
+  dvidsPage?: string;
 }
 
 interface PursueData {
@@ -56,17 +58,24 @@ function cleanField(v: string | undefined | null): string | null {
 
 function mapItem(item: PursueItem, type: RecordType, release: string, base: string): UAPRecord | null {
   const title = cleanField(item.title);
-  const rawUrl = cleanField(item.url);
+  // For videos, the canonical URL is the DVIDS page (item.url is often empty
+  // or points to a related PDF). For pdfs/images, use item.url.
+  const dvidsPage = cleanField(item.dvidsPage);
+  const rawUrl =
+    type === 'video' && dvidsPage ? dvidsPage : cleanField(item.url) ?? dvidsPage;
   const url = absolutize(rawUrl, base);
   if (!title || !url) return null;
 
   const blurb = cleanField(item.blurb);
   const officialBlurb = cleanField(item.officialBlurb);
+  const relatedDoc = type === 'video' ? cleanField(item.url) : null;
 
   // Derive id from URL basename for stable uniqueness (multiple records may share a title).
+  // For videos we suffix with videoId so two videos on the same DVIDS page don't collide.
   const urlBasename = url.split('/').pop()?.replace(/\.\w+$/, '') ?? title;
+  const idKey = type === 'video' && item.videoId ? `${release}-v${item.videoId}` : `${release}-${urlBasename}`;
   return {
-    id: makeId('pursue_r01', `${release}-${urlBasename}`),
+    id: makeId('pursue_r01', idKey),
     _source: 'pursue_r01',
     _type: type,
     title,
@@ -78,13 +87,18 @@ function mapItem(item: PursueItem, type: RecordType, release: string, base: stri
     blurb,
     officialBlurb,
     url,
-    fileUrl: type === 'pdf' || type === 'image' ? url : null,
+    fileUrl: type === 'pdf' || type === 'image' ? url : absolutize(relatedDoc, base),
     videoMp4: absolutize(cleanField(item.videoMp4), base),
     thumb: absolutize(cleanField(item.thumb), base),
     tags: [`release_${release}`],
     country: 'US',
     classification: null,
-    raw: { ...item, _release: release },
+    raw: {
+      ...item,
+      _release: release,
+      // expose dvidsPage as dvidUrl for the frontend's existing DVIDS-button code path
+      dvidUrl: dvidsPage ?? null,
+    },
   };
 }
 
