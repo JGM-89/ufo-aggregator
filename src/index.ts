@@ -63,6 +63,11 @@ const app = express();
 app.use(cors());
 app.use(compression());
 
+// Serve the frontend (index.html + any sibling assets) so users can open
+// http://localhost:3000/ instead of file://... which browsers block from
+// hitting http endpoints.
+app.use(express.static('.', { index: 'index.html', extensions: ['html'] }));
+
 app.get('/health', (_req, res) => {
   res.status(200).json({ status: 'ok', records: cache.records.length });
 });
