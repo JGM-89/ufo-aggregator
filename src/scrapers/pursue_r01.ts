@@ -40,10 +40,13 @@ interface PursueItem {
   videoMp4?: string;
   embed?: string;
   dvidsPage?: string;
+  extracted?: boolean;
+  extractedFrom?: { pdfStem?: string; pdfUrl?: string; page?: number; pdfTitle?: string; kind?: string };
 }
 
 interface PursueData {
   release?: string;
+  counts?: { pdfs?: number; images?: number; videos?: number };
   pdfs?: PursueItem[];
   images?: PursueItem[];
   videos?: PursueItem[];
@@ -69,6 +72,13 @@ function mapItem(item: PursueItem, type: RecordType, release: string, base: stri
   const blurb = cleanField(item.blurb);
   const officialBlurb = cleanField(item.officialBlurb);
   const relatedDoc = type === 'video' ? cleanField(item.url) : null;
+
+  // For PDFs/images with a non-empty videoId, derive a DVIDS URL so the
+  // frontend can show a "DVIDS ↗" button on the related mission-report card.
+  const linkedVideoId = type !== 'video' ? cleanField(item.videoId) : null;
+  const linkedDvidsUrl = linkedVideoId
+    ? cleanField(item.dvidsPage) ?? `https://www.dvidshub.net/video/${linkedVideoId}`
+    : null;
 
   // Derive id from URL basename for stable uniqueness (multiple records may share a title).
   // For videos we suffix with videoId so two videos on the same DVIDS page don't collide.
@@ -96,8 +106,10 @@ function mapItem(item: PursueItem, type: RecordType, release: string, base: stri
     raw: {
       ...item,
       _release: release,
-      // expose dvidsPage as dvidUrl for the frontend's existing DVIDS-button code path
-      dvidUrl: dvidsPage ?? null,
+      // Expose dvidUrl for the frontend's existing DVIDS-button code path.
+      // For videos this is the canonical page; for PDFs/images with a videoId
+      // it points to the paired video.
+      dvidUrl: dvidsPage ?? linkedDvidsUrl ?? null,
     },
   };
 }
@@ -129,14 +141,44 @@ export async function scrape(): Promise<UAPRecord[]> {
     await fs.mkdir(path.dirname(cachePath), { recursive: true });
     await fs.writeFile(cachePath, JSON.stringify(data, null, 2));
 
+    // Drop "extracted" page-render images — they are auto-generated thumbnails
+    // of individual PDF pages, not standalone records. Upstream counts.images
+    // includes them, so we tally the originals separately for the drift check.
+    const rawImages = data.images ?? [];
+    const originalImages = rawImages.filter((x) => !x.extracted);
+    const extractedCount = rawImages.length - originalImages.length;
+
     const pdfs = (data.pdfs ?? []).map((x) => mapItem(x, 'pdf', releaseNum, release.base));
-    const images = (data.images ?? []).map((x) => mapItem(x, 'image', releaseNum, release.base));
+    const images = originalImages.map((x) => mapItem(x, 'image', releaseNum, release.base));
     const videos = (data.videos ?? []).map((x) => mapItem(x, 'video', releaseNum, release.base));
+
+    const emittedPdfs = pdfs.filter(Boolean).length;
+    const emittedImages = images.filter(Boolean).length;
+    const emittedVideos = videos.filter(Boolean).length;
 
     for (const r of [...pdfs, ...images, ...videos]) if (r) records.push(r);
     log.info(
-      `release ${releaseNum}: ${data.pdfs?.length ?? 0} pdfs, ${data.images?.length ?? 0} images, ${data.videos?.length ?? 0} videos`
+      `release ${releaseNum}: ${data.pdfs?.length ?? 0} pdfs, ${originalImages.length} images (${extractedCount} page-renders dropped), ${data.videos?.length ?? 0} videos`
     );
+
+    // Drift guard: compare upstream counts against what we emitted.
+    // counts.images is the upstream total INCLUDING extracted page-renders, so
+    // we compare against originalImages.length, not emittedImages — the
+    // page-render filter is intentional.
+    const c = data.counts ?? {};
+    const expected = {
+      pdfs: c.pdfs ?? data.pdfs?.length ?? 0,
+      images: (c.images ?? rawImages.length) - extractedCount,
+      videos: c.videos ?? data.videos?.length ?? 0,
+    };
+    const actual = { pdfs: emittedPdfs, images: emittedImages, videos: emittedVideos };
+    const deltas: string[] = [];
+    if (actual.pdfs !== expected.pdfs) deltas.push(`pdfs: expected ${expected.pdfs} got ${actual.pdfs}`);
+    if (actual.images !== expected.images) deltas.push(`images: expected ${expected.images} got ${actual.images}`);
+    if (actual.videos !== expected.videos) deltas.push(`videos: expected ${expected.videos} got ${actual.videos}`);
+    if (deltas.length) {
+      log.error(`release ${releaseNum} count mismatch — ${deltas.join('; ')}`);
+    }
   }
 
   log.info(`returning ${records.length} records`);
