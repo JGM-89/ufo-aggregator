@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global UAP Archive</title>
+  <style>
+    :root {
+      --bg:      #07090c;
+      --bg2:     #0d1117;
+      --bg3:     #141b24;
+      --bg4:     #1a2332;
+      --border:  #1e2d3d;
+      --text:    #b0c4d8;
+      --dim:     #4a6070;
+      --accent:  #2d8fff;
+      --a2:      #0e2a50;
+      --green:   #2de87a;
+      --red:     #e84040;
+      --yellow:  #f5c53a;
+      --purple:  #b07aff;
+      --orange:  #f08030;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: 'Courier New', monospace; font-size: 14px; min-height: 100vh; }
+
+    /* ── Classification Banner ─── */
+    .classif {
+      background: #130000; border-bottom: 2px solid var(--red);
+      color: var(--red); text-align: center; padding: 5px 8px;
+      font-size: 11px; font-weight: bold; letter-spacing: 3px;
+    }
+
+    /* ── Header ─── */
+    header {
+      background: var(--bg2); border-bottom: 1px solid var(--border);
+      padding: 18px 28px; display: flex; align-items: center; gap: 16px;
+    }
+    .seal { width: 50px; height: 50px; border: 2px solid var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+    header h1 { font-size: 20px; color: #fff; letter-spacing: 2px; }
+    .sub { font-size: 11px; color: var(--dim); letter-spacing: 1px; margin-top: 3px; }
+
+    /* ── Source Selector ─── */
+    .source-bar {
+      background: var(--bg2); border-bottom: 2px solid var(--a2);
+      padding: 14px 28px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
+    }
+    .source-label { font-size: 10px; color: var(--dim); letter-spacing: 2px; text-transform: uppercase; margin-right: 4px; }
+    .src-btn {
+      background: var(--bg3); border: 1px solid var(--border);
+      color: var(--dim); font-family: inherit; font-size: 11px;
+      padding: 6px 14px; cursor: pointer; letter-spacing: 1px;
+      text-transform: uppercase; transition: all .15s; white-space: nowrap;
+    }
+    .src-btn:hover { color: var(--text); border-color: var(--accent); }
+    .src-btn.active { background: var(--a2); border-color: var(--accent); color: var(--accent); }
+    .src-btn .flag { margin-right: 5px; }
+    .src-btn .cnt { opacity: .6; font-size: 10px; margin-left: 4px; }
+    .src-future {
+      background: var(--bg3); border: 1px dashed var(--border);
+      color: var(--dim); font-family: inherit; font-size: 11px;
+      padding: 6px 14px; letter-spacing: 1px; text-transform: uppercase;
+      white-space: nowrap; cursor: default; opacity: .55;
+    }
+
+    /* ── Stats Bar ─── */
+    .statsbar {
+      background: var(--bg2); border-bottom: 1px solid var(--border);
+      padding: 9px 28px; display: flex; gap: 24px; flex-wrap: wrap; align-items: center;
+    }
+    .stat { display: flex; align-items: baseline; gap: 6px; }
+    .stat-n { color: var(--accent); font-size: 18px; font-weight: bold; }
+    .stat-l { color: var(--dim); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; }
+    .src-info { margin-left: auto; font-size: 11px; color: var(--dim); }
+    .src-info a { color: var(--accent); text-decoration: none; }
+    .src-info a:hover { text-decoration: underline; }
+
+    /* ── Controls ─── */
+    .controls {
+      background: var(--bg2); border-bottom: 1px solid var(--border);
+      padding: 11px 28px; display: flex; gap: 9px; flex-wrap: wrap; align-items: center;
+    }
+    input[type=text], select {
+      background: var(--bg3); border: 1px solid var(--border); color: var(--text);
+      font-family: inherit; font-size: 13px; padding: 6px 10px; outline: none; transition: border-color .15s;
+    }
+    input[type=text] { flex: 1; min-width: 180px; }
+    input[type=text]:focus, select:focus { border-color: var(--accent); }
+    input[type=text]::placeholder { color: var(--dim); }
+    select { cursor: pointer; }
+
+    /* ── Type Tabs ─── */
+    .tabs { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 0 28px; display: flex; }
+    .tab {
+      padding: 10px 16px; cursor: pointer; color: var(--dim); border-bottom: 2px solid transparent;
+      font-size: 11px; letter-spacing: 1px; text-transform: uppercase;
+      background: none; border-top: none; border-left: none; border-right: none;
+      font-family: inherit; transition: color .15s, border-color .15s;
+    }
+    .tab:hover { color: var(--text); }
+    .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+    .tab .cnt { background: var(--bg3); padding: 1px 5px; font-size: 9px; margin-left: 4px; border-radius: 2px; }
+
+    /* ── Main ─── */
+    main { padding: 20px 28px; }
+    #loading { text-align: center; padding: 60px 20px; color: var(--dim); }
+    .blink { animation: blink 1s step-end infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+    .error-box { background: #120000; border: 1px solid var(--red); color: var(--red); padding: 14px; margin-bottom: 16px; font-size: 13px; display: none; }
+    .result-count { font-size: 11px; color: var(--dim); margin-bottom: 14px; display: none; }
+
+    /* ── Grids ─── */
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 13px; }
+    .grid.image-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+    .grid.video-grid { grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); }
+
+    /* ── Card ─── */
+    .card {
+      background: var(--bg2); border: 1px solid var(--border); overflow: hidden;
+      cursor: pointer; transition: border-color .15s, transform .1s;
+    }
+    .card:hover { border-color: #2a4060; transform: translateY(-1px); }
+
+    .card-thumb { width: 100%; height: 170px; object-fit: cover; display: block; background: var(--bg3); }
+    .card-thumb.tall { height: 215px; }
+    .card-no-thumb { width: 100%; height: 170px; background: var(--bg3); display: flex; align-items: center; justify-content: center; font-size: 34px; color: var(--border); }
+    .video-preview { width: 100%; height: 170px; object-fit: cover; display: block; background: #000; }
+
+    .card-body { padding: 11px; }
+
+    /* badges */
+    .badge { display: inline-block; font-size: 9px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; padding: 2px 5px; border: 1px solid; margin-right: 3px; margin-bottom: 6px; }
+    .b-fbi    { color: #ff7070; background: rgba(255,112,112,.1); border-color: rgba(255,112,112,.3); }
+    .b-dow    { color: var(--accent); background: rgba(45,143,255,.1); border-color: rgba(45,143,255,.3); }
+    .b-nasa   { color: var(--purple); background: rgba(176,122,255,.1); border-color: rgba(176,122,255,.3); }
+    .b-nara   { color: var(--yellow); background: rgba(245,197,58,.1); border-color: rgba(245,197,58,.3); }
+    .b-dos    { color: var(--green); background: rgba(45,232,122,.1); border-color: rgba(45,232,122,.3); }
+    .b-aaro   { color: var(--orange); background: rgba(240,128,48,.1); border-color: rgba(240,128,48,.3); }
+    .b-video  { color: var(--green); background: rgba(45,232,122,.1); border-color: rgba(45,232,122,.3); }
+    .b-img    { color: var(--yellow); background: rgba(245,197,58,.1); border-color: rgba(245,197,58,.3); }
+    .b-ok     { color: var(--green); background: rgba(45,232,122,.08); border-color: rgba(45,232,122,.25); }
+    .b-unres  { color: #ff8844; background: rgba(255,136,68,.08); border-color: rgba(255,136,68,.25); }
+    .b-anlys  { color: var(--yellow); background: rgba(245,197,58,.08); border-color: rgba(245,197,58,.25); }
+
+    .card-title { font-size: 13px; color: #d8e8f4; margin-bottom: 5px; line-height: 1.4; }
+    .card-meta { font-size: 11px; color: var(--dim); margin-bottom: 6px; display: flex; flex-direction: column; gap: 2px; }
+    .card-blurb { font-size: 12px; color: #4a6070; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .card-actions { display: flex; gap: 5px; margin-top: 9px; flex-wrap: wrap; }
+
+    .btn { font-family: inherit; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; padding: 4px 8px; border: 1px solid; cursor: pointer; text-decoration: none; transition: background .12s; display: inline-block; }
+    .btn-pdf  { color: var(--accent); background: rgba(45,143,255,.1); border-color: rgba(45,143,255,.3); }
+    .btn-pdf:hover  { background: rgba(45,143,255,.2); }
+    .btn-vid  { color: var(--green);  background: rgba(45,232,122,.1); border-color: rgba(45,232,122,.3); }
+    .btn-vid:hover  { background: rgba(45,232,122,.2); }
+    .btn-img  { color: var(--yellow); background: rgba(245,197,58,.1); border-color: rgba(245,197,58,.3); }
+    .btn-img:hover  { background: rgba(245,197,58,.2); }
+    .btn-case { color: var(--purple); background: rgba(176,122,255,.1); border-color: rgba(176,122,255,.3); }
+    .btn-case:hover { background: rgba(176,122,255,.2); }
+
+    /* ── Section headers ─── */
+    .sec-hdr { margin: 0 0 14px; padding-bottom: 9px; border-bottom: 1px solid var(--border); }
+    .sec-hdr h2 { font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; }
+    .sec-hdr p { font-size: 11px; color: var(--dim); margin-top: 3px; }
+    .sec-gap { margin-top: 28px; }
+    .no-results { text-align: center; padding: 40px 20px; color: var(--dim); }
+
+    /* ── International Directory ─── */
+    .intl-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+    .intl-card {
+      background: var(--bg2); border: 1px solid var(--border); padding: 14px;
+      text-decoration: none; transition: border-color .15s;
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .intl-card:hover { border-color: var(--accent); }
+    .intl-top { display: flex; align-items: center; gap: 10px; }
+    .intl-flag { font-size: 22px; }
+    .intl-name { font-size: 13px; color: #fff; }
+    .intl-org { font-size: 11px; color: var(--accent); }
+    .intl-desc { font-size: 11px; color: var(--dim); line-height: 1.5; }
+    .intl-stats { font-size: 10px; color: var(--dim); display: flex; gap: 12px; flex-wrap: wrap; margin-top: 2px; }
+    .intl-stats span { color: var(--text); }
+
+    /* ── Lightbox ─── */
+    .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.93); z-index: 900; align-items: center; justify-content: center; }
+    .lightbox.open { display: flex; }
+    .lb-close { position: fixed; top: 14px; right: 20px; color: var(--text); font-size: 34px; cursor: pointer; background: none; border: none; font-family: inherit; }
+    .lb-inner { max-width: 90vw; text-align: center; }
+    .lb-inner img { max-width: 88vw; max-height: 74vh; object-fit: contain; border: 1px solid var(--border); }
+    .lb-caption { margin-top: 10px; color: var(--dim); font-size: 12px; max-width: 680px; margin-left: auto; margin-right: auto; }
+    .lb-caption strong { color: var(--text); display: block; margin-bottom: 3px; }
+
+    /* ── Video Modal ─── */
+    .vmodal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.95); z-index: 900; align-items: center; justify-content: center; }
+    .vmodal.open { display: flex; }
+    .vmodal-close { position: fixed; top: 14px; right: 20px; color: var(--text); font-size: 34px; cursor: pointer; background: none; border: none; font-family: inherit; }
+    .vmodal-inner { max-width: 900px; width: 94vw; }
+    .vmodal-inner video { width: 100%; max-height: 72vh; background: #000; }
+    .vmodal-caption { margin-top: 10px; color: var(--dim); font-size: 12px; }
+    .vmodal-caption strong { color: #fff; display: block; margin-bottom: 4px; font-size: 14px; }
+
+    /* ── Detail Modal ─── */
+    .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.88); z-index: 900; overflow-y: auto; }
+    .modal.open { display: flex; align-items: flex-start; justify-content: center; padding: 36px 14px; }
+    .modal-box { background: var(--bg2); border: 1px solid var(--border); max-width: 680px; width: 100%; padding: 22px; position: relative; }
+    .modal-close { position: absolute; top: 10px; right: 14px; background: none; border: none; color: var(--dim); font-size: 26px; cursor: pointer; font-family: inherit; }
+    .modal-close:hover { color: var(--text); }
+    .modal-thumb { width: 100%; height: 200px; object-fit: cover; margin-bottom: 14px; border: 1px solid var(--border); }
+    .modal-title { font-size: 15px; color: #fff; margin-bottom: 12px; line-height: 1.4; }
+    .modal-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 12px; }
+    .modal-table td { padding: 5px 8px; border-bottom: 1px solid var(--border); }
+    .modal-table td:first-child { color: var(--dim); width: 120px; text-transform: uppercase; letter-spacing: 1px; font-size: 10px; }
+    .modal-sec { font-size: 10px; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; margin: 14px 0 6px; }
+    .modal-text { font-size: 13px; line-height: 1.7; color: var(--text); }
+    .modal-official { font-size: 12px; line-height: 1.6; color: var(--dim); }
+    .modal-actions { display: flex; gap: 10px; margin-top: 18px; flex-wrap: wrap; }
+    .btn-lg { padding: 9px 18px; font-size: 12px; }
+
+    /* ── Footer ─── */
+    footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 16px 28px; margin-top: 40px; font-size: 11px; color: var(--dim); text-align: center; }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<div class="classif">UNCLASSIFIED ░ FOR PUBLIC RELEASE ░ MULTI-SOURCE UAP ARCHIVE ░ PUBLIC DOMAIN GOVERNMENT RECORDS</div>
+
+<header>
+  <div class="seal">★</div>
+  <div>
+    <h1>GLOBAL UAP ARCHIVE</h1>
+    <div class="sub">AGGREGATED DECLASSIFIED UAP/UFO RECORDS FROM GOVERNMENT SOURCES WORLDWIDE</div>
+  </div>
+</header>
+
+<!-- Source Selector -->
+<div class="source-bar">
+  <span class="source-label">Source</span>
+  <button class="src-btn active" onclick="setSource('all',this)">🌐 All Sources <span class="cnt" id="sc-all">—</span></button>
+  <button class="src-btn" onclick="setSource('pursue_r01',this)">🇺🇸 PURSUE Release 01 <span class="cnt" id="sc-pursue">162</span></button>
+  <button class="src-btn" onclick="setSource('aaro',this)">🇺🇸 AARO Imagery <span class="cnt" id="sc-aaro">28</span></button>
+  <span class="src-future">🇫🇷 GEIPAN (coming)</span>
+  <span class="src-future">🇬🇧 UK Nat. Archives (coming)</span>
+  <span class="src-future">🇧🇷 Brazil AF (coming)</span>
+  <button class="src-btn" onclick="setSource('intl',this)">🌍 International Directory</button>
+</div>
+
+<div class="statsbar">
+  <div class="stat"><span class="stat-n" id="s-total">—</span><span class="stat-l">Total</span></div>
+  <div class="stat"><span class="stat-n" id="s-pdfs">—</span><span class="stat-l">Docs</span></div>
+  <div class="stat"><span class="stat-n" id="s-imgs">—</span><span class="stat-l">Images</span></div>
+  <div class="stat"><span class="stat-n" id="s-vids">—</span><span class="stat-l">Videos</span></div>
+  <div class="src-info" id="src-info">Loading…</div>
+</div>
+
+<div class="controls" id="controls">
+  <input type="text" id="q" placeholder="🔍  Search titles, descriptions, locations, agencies…" oninput="applyFilters()">
+  <select id="f-agency" onchange="applyFilters()">
+    <option value="">All Agencies</option>
+    <option value="FBI">FBI</option>
+    <option value="DOW">Dept of War / DoD</option>
+    <option value="AARO">AARO</option>
+    <option value="NASA">NASA</option>
+    <option value="NARA">NARA</option>
+    <option value="DOS">Dept of State</option>
+  </select>
+  <select id="f-res" onchange="applyFilters()">
+    <option value="">All Resolutions</option>
+    <option value="unresolved">Unresolved</option>
+    <option value="resolved">Resolved</option>
+    <option value="analysis">Under Analysis</option>
+  </select>
+  <select id="f-sort" onchange="applyFilters()">
+    <option value="">Sort: Default</option>
+    <option value="title-az">Title A → Z</option>
+    <option value="date-desc">Incident Date (Newest)</option>
+    <option value="date-asc">Incident Date (Oldest)</option>
+    <option value="agency">Agency</option>
+    <option value="loc">Location A → Z</option>
+  </select>
+</div>
+
+<div class="tabs" id="type-tabs">
+  <button class="tab active" onclick="switchTab('all',this)">All <span class="cnt" id="c-all">—</span></button>
+  <button class="tab" onclick="switchTab('pdf',this)">Documents <span class="cnt" id="c-pdfs">—</span></button>
+  <button class="tab" onclick="switchTab('image',this)">Images <span class="cnt" id="c-imgs">—</span></button>
+  <button class="tab" onclick="switchTab('video',this)">Videos <span class="cnt" id="c-vids">—</span></button>
+</div>
+
+<main>
+  <div id="loading"><div style="font-size:15px">LOADING ARCHIVE<span class="blink">_</span></div><div style="margin-top:8px;font-size:12px">Fetching manifests…</div></div>
+  <div class="error-box" id="err"></div>
+  <div class="result-count" id="rcount"></div>
+  <div id="content" style="display:none"></div>
+</main>
+
+<footer>
+  Aggregated from public-domain U.S. government sources: <a href="https://www.war.gov/ufo/" target="_blank">war.gov/ufo</a> (PURSUE) ·
+  <a href="https://www.aaro.mil/UAP-Cases/Official-UAP-Imagery/" target="_blank">aaro.mil</a> ·
+  Files and thumbnails served from original government servers.
+  International sources: <a href="https://geipan.fr" target="_blank">GEIPAN</a> ·
+  <a href="https://www.nationalarchives.gov.uk/help-with-your-research/research-guides/ufos/" target="_blank">UK National Archives</a>
+</footer>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lb" onclick="closeLB(event)">
+  <button class="lb-close" onclick="closeLB()">×</button>
+  <div class="lb-inner">
+    <img id="lb-img" src="" alt="">
+    <div class="lb-caption"><strong id="lb-title"></strong><span id="lb-desc"></span></div>
+  </div>
+</div>
+
+<!-- Video Modal -->
+<div class="vmodal" id="vmodal" onclick="closeVM(event)">
+  <button class="vmodal-close" onclick="closeVM()">×</button>
+  <div class="vmodal-inner">
+    <video id="vmodal-video" controls></video>
+    <div class="vmodal-caption"><strong id="vm-title"></strong><span id="vm-desc"></span></div>
+  </div>
+</div>
+
+<!-- Detail Modal -->
+<div class="modal" id="modal" onclick="closeModal(event)">
+  <div class="modal-box" id="modal-box">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <div id="modal-inner"></div>
+  </div>
+</div>
+
+<script>
+// ─────────────────────────────────────────────────────────────
+//  AARO records now served via the aggregator API. The legacy
+//  hardcoded list was extracted to data/cache/aaro_manual.json.
+// ─────────────────────────────────────────────────────────────
+
+
+// ─────────────────────────────────────────────────────────────
+//  International Archive Directory (static links)
+// ─────────────────────────────────────────────────────────────
+const INTL_SOURCES = [
+  { flag:'🇺🇸', name:'PURSUE Archive', org:'U.S. Dept of War', desc:'Presidential Unsealing and Reporting System for UAP Encounters. 162+ declassified files, rolling releases.', records:'162+ files', since:'2026', url:'https://www.war.gov/ufo/' },
+  { flag:'🇺🇸', name:'AARO Imagery', org:'All-domain Anomaly Resolution Office', desc:'Official UAP imagery from the DoD\'s dedicated UAP investigation office. Includes the original Gimbal, FLIR, and Go Fast videos plus 30+ more.', records:'30+ videos', since:'2023', url:'https://www.aaro.mil/UAP-Cases/Official-UAP-Imagery/' },
+  { flag:'🇺🇸', name:'NARA UAP Records', org:'National Archives (NARA)', desc:'Historical U.S. government UFO records spanning decades, actively being digitized. Includes Project Blue Book and other archival material.', records:'Thousands of docs', since:'Ongoing', url:'https://www.archives.gov/research/topics/uaps' },
+  { flag:'🇺🇸', name:'FBI Vault — Flying Discs', org:'Federal Bureau of Investigation', desc:'The FBI\'s original flying disc case files dating from 1947. PURSUE Release 01 contains the complete file with fewer redactions.', records:'~400 pages', since:'1947', url:'https://vault.fbi.gov/UFO' },
+  { flag:'🇫🇷', name:'GEIPAN', org:'CNES (French Space Agency)', desc:'France\'s official UAP investigation unit has had a fully public database online since 2007. Radar plots, witness interviews, and case files from 1954 to present. One of the most complete government UAP archives in the world.', records:'~3,000+ cases', since:'1977', url:'https://geipan.fr' },
+  { flag:'🇬🇧', name:'UK UFO Files', org:'The National Archives / MOD', desc:'200+ Ministry of Defence files covering ~11,000 sighting reports from the 1950s through 2009, transferred to the National Archives between 2008–2017.', records:'~11,000 reports', since:'1950s', url:'https://www.nationalarchives.gov.uk/help-with-your-research/research-guides/ufos/' },
+  { flag:'🇧🇷', name:'Brazilian Air Force UAP', org:'Força Aérea Brasileira', desc:'Brazil mandated public archiving of UAP reports by government decree in 2010. Includes the famous 1977 "Operação Prato" (Operation Saucer) files. Archives held at the National Archives.', records:'Hundreds of cases', since:'1977', url:'https://www.fab.mil.br' },
+  { flag:'🇨🇦', name:'Library and Archives Canada', org:'National Research Council of Canada', desc:'Declassified NRC reports analyzing civilian UAP sightings from the 1950s through 1990s. Canada was one of the first governments to formally study the phenomenon.', records:'Hundreds of reports', since:'1950s', url:'https://www.bac-lac.gc.ca/eng/Pages/home.aspx' },
+  { flag:'🇨🇱', name:'CEFAA', org:'Comité de Estudios de Fenómenos Aéreos Anómalos', desc:'Chile\'s official UAP study committee under the Civil Aviation Authority (DGAC). Regularly publishes case files and declassified videos. One of the most active government UAP programs.', records:'Active cases', since:'1997', url:'https://www.cefaa.gob.cl' },
+  { flag:'🇺🇾', name:'CRIDOVNI', org:'Uruguayan Air Force', desc:'Uruguay\'s official UAP investigation unit has operated continuously since 1979, making it one of the longest-running formal UAP programs in the world.', records:'Active cases', since:'1979', url:'https://www.fau.mil.uy' },
+  { flag:'🇵🇪', name:'DIFAA', org:'Peruvian Air Force', desc:'Peru\'s Department of Investigation of Anomalous Aerial Phenomena has investigated cases since 2001 and publicly releases reports.', records:'Active cases', since:'2001', url:'https://www.fap.mil.pe' },
+];
+
+// ─────────────────────────────────────────────────────────────
+//  State
+// ─────────────────────────────────────────────────────────────
+// Data source: aggregated by ufo-aggregator backend, served via jsDelivr.
+// During local dev, point at the local Express server: http://localhost:3000/api/records?limit=2000
+// (the API returns { meta, records }; the static data.json has the same shape).
+const API_URL = window.location.hostname === 'localhost' || window.location.protocol === 'file:'
+  ? 'http://localhost:3000/api/records?limit=2000'
+  : 'https://cdn.jsdelivr.net/gh/__GITHUB_OWNER__/ufo-aggregator@main/data/data.json';
+let pursueItems = [];
+let aaroItems = [];
+let activeSource = 'all';
+let activeTab = 'all';
+let allItems = [];
+
+// ─────────────────────────────────────────────────────────────
+//  Init — fetch from aggregator API
+// ─────────────────────────────────────────────────────────────
+async function init() {
+  try {
+    const r = await fetch(API_URL);
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const d = await r.json();
+    // Hoist source-specific raw fields the renderer expects (dvidUrl, caseUrl for AARO).
+    const records = (d.records || []).map(x => ({
+      ...x,
+      dvidUrl: x.raw && x.raw.dvidUrl ? x.raw.dvidUrl : null,
+      caseUrl: x.raw && x.raw.caseUrl ? x.raw.caseUrl : (x._source === 'aaro' ? x.fileUrl : null),
+    }));
+    pursueItems = records.filter(x => x._source === 'pursue_r01');
+    aaroItems   = records.filter(x => x._source === 'aaro');
+    allItems    = records;
+  } catch(e) {
+    document.getElementById('err').style.display = 'block';
+    document.getElementById('err').textContent = 'Failed to load aggregated UAP data (' + e.message + '). Check the backend or your network connection.';
+    allItems = [];
+  }
+
+  // Update source counts
+  document.getElementById('sc-all').textContent = allItems.length;
+  document.getElementById('sc-pursue').textContent = pursueItems.length;
+  document.getElementById('sc-aaro').textContent = aaroItems.length;
+
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('content').style.display = 'block';
+  document.getElementById('rcount').style.display = 'block';
+
+  applyFilters();
+}
+
+// ─────────────────────────────────────────────────────────────
+//  Source / Tab switching
+// ─────────────────────────────────────────────────────────────
+function setSource(src, el) {
+  activeSource = src;
+  document.querySelectorAll('.src-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+
+  const controls = document.getElementById('controls');
+  const tabs = document.getElementById('type-tabs');
+  const isIntl = src === 'intl';
+  controls.style.display = isIntl ? 'none' : '';
+  tabs.style.display = isIntl ? 'none' : '';
+
+  if (isIntl) {
+    renderIntl();
+    document.getElementById('rcount').style.display = 'none';
+    updateStats([], src);
+  } else {
+    document.getElementById('rcount').style.display = 'block';
+    applyFilters();
+  }
+}
+
+function switchTab(type, el) {
+  activeTab = type;
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  applyFilters();
+}
+
+// ─────────────────────────────────────────────────────────────
+//  Filters
+// ─────────────────────────────────────────────────────────────
+function applyFilters() {
+  const q       = document.getElementById('q').value.toLowerCase().trim();
+  const fAgency = document.getElementById('f-agency').value;
+  const fRes    = document.getElementById('f-res').value;
+  const fSort   = document.getElementById('f-sort').value;
+
+  // Source pool
+  let pool = activeSource === 'all'         ? allItems
+           : activeSource === 'pursue_r01'  ? pursueItems
+           : activeSource === 'aaro'        ? aaroItems
+           : allItems;
+
+  // Tab filter
+  if (activeTab !== 'all') pool = pool.filter(x => x._type === activeTab);
+
+  // Agency
+  if (fAgency) pool = pool.filter(x => {
+    const a = (x.agency || '').toLowerCase();
+    if (fAgency === 'FBI')  return a.includes('fbi');
+    if (fAgency === 'DOW')  return a.includes('war') || a.includes('dow') || a.includes('defense');
+    if (fAgency === 'AARO') return a.includes('aaro');
+    if (fAgency === 'NASA') return a.includes('nasa');
+    if (fAgency === 'NARA') return a.includes('nara') || a.includes('archive');
+    if (fAgency === 'DOS')  return a.includes('state') || a.includes('dos');
+    return true;
+  });
+
+  // Resolution
+  if (fRes) pool = pool.filter(x => (x.resolution || '') === fRes);
+
+  // Search
+  if (q) pool = pool.filter(x => {
+    const h = [x.title, x.blurb, x.officialBlurb, x.agency, x.incidentLocation, x.videoTitle].join(' ').toLowerCase();
+    return q.split(/\s+/).every(w => h.includes(w));
+  });
+
+  // Sort
+  if (fSort === 'title-az') pool.sort((a,b) => (a.title||'').localeCompare(b.title||''));
+  else if (fSort === 'agency') pool.sort((a,b) => (a.agency||'').localeCompare(b.agency||''));
+  else if (fSort === 'loc') pool.sort((a,b) => (a.incidentLocation||'ZZZZ').localeCompare(b.incidentLocation||'ZZZZ'));
+  else if (fSort === 'date-desc' || fSort === 'date-asc') {
+    const pd = s => { if (!s || s==='N/A') return 0; const p = s.split(/[\/\-]/); return new Date(p[2]>50?'19'+p[2]:'20'+p[2], (p[0]||1)-1, p[1]||1).getTime()||0; };
+    pool.sort((a,b) => fSort==='date-desc' ? pd(b.incidentDate)-pd(a.incidentDate) : pd(a.incidentDate)-pd(b.incidentDate));
+  }
+
+  // Update tab counts
+  const basePool = (activeSource === 'all' ? allItems : activeSource === 'pursue_r01' ? pursueItems : activeSource === 'aaro' ? aaroItems : allItems);
+  document.getElementById('c-all').textContent  = basePool.length;
+  document.getElementById('c-pdfs').textContent = basePool.filter(x=>x._type==='pdf').length;
+  document.getElementById('c-imgs').textContent = basePool.filter(x=>x._type==='image').length;
+  document.getElementById('c-vids').textContent = basePool.filter(x=>x._type==='video').length;
+
+  updateStats(pool, activeSource);
+  renderResults(pool);
+}
+
+function updateStats(items, src) {
+  document.getElementById('s-total').textContent = items.length;
+  document.getElementById('s-pdfs').textContent  = items.filter(x=>x._type==='pdf').length;
+  document.getElementById('s-imgs').textContent  = items.filter(x=>x._type==='image').length;
+  document.getElementById('s-vids').textContent  = items.filter(x=>x._type==='video').length;
+  const srcLinks = {
+    all: 'Multiple sources — war.gov/ufo & aaro.mil',
+    pursue_r01: '<a href="https://www.war.gov/ufo/" target="_blank">war.gov/ufo</a> · Released May 8, 2026',
+    aaro: '<a href="https://www.aaro.mil/UAP-Cases/Official-UAP-Imagery/" target="_blank">aaro.mil</a> · Updated Jan 2026',
+    intl: 'Global government archive directory',
+  };
+  document.getElementById('src-info').innerHTML = srcLinks[src] || '';
+}
+
+// ─────────────────────────────────────────────────────────────
+//  Rendering
+// ─────────────────────────────────────────────────────────────
+function agCls(agency) {
+  const a = (agency||'').toLowerCase();
+  if (a.includes('fbi'))  return 'b-fbi';
+  if (a.includes('aaro')) return 'b-aaro';
+  if (a.includes('war')||a.includes('dow')||a.includes('defense')||a.includes('navy')||a.includes('air force')||a.includes('army')||a.includes('cbp')||a.includes('centcom')||a.includes('eucom')||a.includes('africom')||a.includes('socom')||a.includes('soc')) return 'b-dow';
+  if (a.includes('nasa')) return 'b-nasa';
+  if (a.includes('nara')||a.includes('archive')) return 'b-nara';
+  if (a.includes('state')||a.includes('dos')) return 'b-dos';
+  return 'b-dow';
+}
+function resCls(r) {
+  if (!r) return '';
+  if (r==='resolved') return 'b-ok';
+  if (r==='unresolved') return 'b-unres';
+  if (r==='analysis') return 'b-anlys';
+  return '';
+}
+function resLabel(r) {
+  if (!r) return '';
+  if (r==='resolved') return '✓ RESOLVED';
+  if (r==='unresolved') return '? UNRESOLVED';
+  if (r==='analysis') return '⟳ ANALYSIS';
+  return '';
+}
+function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function renderResults(items) {
+  const rc = document.getElementById('rcount');
+  rc.textContent = items.length + ' files';
+
+  if (!items.length) {
+    document.getElementById('content').innerHTML = '<div class="no-results">No files match your filters.</div>';
+    return;
+  }
+
+  const showAll = activeTab === 'all';
+  if (showAll) {
+    const imgs  = items.filter(x=>x._type==='image');
+    const pdfs  = items.filter(x=>x._type==='pdf');
+    const vids  = items.filter(x=>x._type==='video');
+    let html = '';
+    if (imgs.length) {
+      html += `<div class="sec-hdr"><h2>Images (${imgs.length})</h2><p>Declassified photographs and sensor imagery</p></div>`;
+      html += `<div class="grid image-grid">${imgs.map(d=>cardHTML(d,allItems.indexOf(d))).join('')}</div>`;
+    }
+    if (pdfs.length) {
+      html += `<div class="sec-hdr ${imgs.length?'sec-gap':''}"><h2>Documents — PDF (${pdfs.length})</h2><p>Declassified reports, memos, transcripts, and case files</p></div>`;
+      html += `<div class="grid">${pdfs.map(d=>cardHTML(d,allItems.indexOf(d))).join('')}</div>`;
+    }
+    if (vids.length) {
+      html += `<div class="sec-hdr sec-gap"><h2>Videos (${vids.length})</h2><p>Sensor footage and recordings — AARO videos play inline</p></div>`;
+      html += `<div class="grid video-grid">${vids.map(d=>cardHTML(d,allItems.indexOf(d))).join('')}</div>`;
+    }
+    document.getElementById('content').innerHTML = html;
+  } else {
+    const gc = activeTab==='image' ? 'image-grid' : activeTab==='video' ? 'video-grid' : '';
+    document.getElementById('content').innerHTML = `<div class="grid ${gc}">${items.map(d=>cardHTML(d,allItems.indexOf(d))).join('')}</div>`;
+  }
+}
+
+function cardHTML(item, idx) {
+  const type = item._type;
+  const src  = item._source;
+  const ac   = agCls(item.agency);
+  const rc   = resCls(item.resolution);
+  const rl   = resLabel(item.resolution);
+
+  // Thumbnail / preview
+  let mediaHtml = '';
+  if (type === 'video' && item.videoMp4) {
+    mediaHtml = `<video class="video-preview" src="${esc(item.videoMp4)}" preload="none" poster="" muted></video>`;
+  } else if (item.thumb) {
+    mediaHtml = `<img class="card-thumb${type==='image'?' tall':''}" src="${esc(item.thumb)}" loading="lazy" alt="" onerror="this.style.display='none'">`;
+  } else {
+    mediaHtml = `<div class="card-no-thumb">${type==='pdf'?'📄':type==='image'?'🖼️':'📹'}</div>`;
+  }
+
+  const srcBadge = src === 'pursue_r01'
+    ? '<span class="badge b-dow" style="font-size:8px">PURSUE R01</span>'
+    : '<span class="badge b-aaro" style="font-size:8px">AARO</span>';
+
+  const meta = [
+    item.incidentLocation && item.incidentLocation !== 'N/A' ? `<span>📍 ${esc(item.incidentLocation)}</span>` : '',
+    item.incidentDate && item.incidentDate !== 'N/A' ? `<span>📅 ${esc(item.incidentDate)}</span>` : ''
+  ].filter(Boolean).join('');
+
+  const actions = [
+    type === 'pdf'   && item.url       ? `<a href="${esc(item.url)}" target="_blank" class="btn btn-pdf" onclick="event.stopPropagation()">PDF ↗</a>` : '',
+    type === 'image' && item.url       ? `<a href="${esc(item.url)}" target="_blank" class="btn btn-img" onclick="event.stopPropagation()">Full Size ↗</a>` : '',
+    item.videoMp4                      ? `<button class="btn btn-vid" onclick="event.stopPropagation();playVideo(${idx})">▶ Play</button>` : '',
+    item.dvidUrl                       ? `<a href="${esc(item.dvidUrl)}" target="_blank" class="btn btn-vid" onclick="event.stopPropagation()">DVIDS ↗</a>` : '',
+    item.videoId && !item.videoMp4     ? `<a href="https://www.dvidshub.net/video/${esc(item.videoId)}" target="_blank" class="btn btn-vid" onclick="event.stopPropagation()">Watch ↗</a>` : '',
+    item.caseUrl                       ? `<a href="${esc(item.caseUrl)}" target="_blank" class="btn btn-case" onclick="event.stopPropagation()">Case ↗</a>` : ''
+  ].filter(Boolean).join('');
+
+  const clickFn = type === 'image' ? `openLB(${idx})` : type === 'video' && item.videoMp4 ? `playVideo(${idx})` : `openDetail(${idx})`;
+
+  return `
+<div class="card" onclick="${clickFn}">
+  ${mediaHtml}
+  <div class="card-body">
+    ${srcBadge}<span class="badge ${ac}">${esc(item.agency||'Unknown')}</span>${rc?`<span class="badge ${rc}">${rl}</span>`:''}
+    <div class="card-title">${esc(item.title||item.videoTitle||'Untitled')}</div>
+    ${meta ? `<div class="card-meta">${meta}</div>` : ''}
+    ${item.blurb ? `<div class="card-blurb">${esc(item.blurb)}</div>` : ''}
+    ${actions ? `<div class="card-actions">${actions}</div>` : ''}
+  </div>
+</div>`;
+}
+
+function renderIntl() {
+  document.getElementById('s-total').textContent = INTL_SOURCES.length;
+  document.getElementById('s-pdfs').textContent  = '—';
+  document.getElementById('s-imgs').textContent  = '—';
+  document.getElementById('s-vids').textContent  = '—';
+  document.getElementById('content').innerHTML = `
+    <div class="sec-hdr"><h2>International Government UAP Archives</h2><p>Official government programs and public archives — click to visit</p></div>
+    <div class="intl-grid">${INTL_SOURCES.map(s => `
+      <a class="intl-card" href="${esc(s.url)}" target="_blank">
+        <div class="intl-top">
+          <span class="intl-flag">${s.flag}</span>
+          <div><div class="intl-name">${esc(s.name)}</div><div class="intl-org">${esc(s.org)}</div></div>
+        </div>
+        <div class="intl-desc">${esc(s.desc)}</div>
+        <div class="intl-stats"><span>📁 ${esc(s.records)}</span><span>📅 Since ${esc(s.since)}</span></div>
+      </a>`).join('')}
+    </div>`;
+}
+
+// ─────────────────────────────────────────────────────────────
+//  Lightbox
+// ─────────────────────────────────────────────────────────────
+function openLB(idx) {
+  const d = allItems[idx];
+  document.getElementById('lb-img').src = d.url || d.thumb || '';
+  document.getElementById('lb-title').textContent = d.title || '';
+  document.getElementById('lb-desc').textContent = d.officialBlurb || d.blurb || '';
+  document.getElementById('lb').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLB(e) {
+  if (e && !e.target.classList.contains('lightbox') && !e.target.classList.contains('lb-close')) return;
+  document.getElementById('lb').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ─────────────────────────────────────────────────────────────
+//  Video Player
+// ─────────────────────────────────────────────────────────────
+function playVideo(idx) {
+  const d = allItems[idx];
+  if (!d.videoMp4) { if (d.dvidUrl) window.open(d.dvidUrl,'_blank'); return; }
+  const v = document.getElementById('vmodal-video');
+  v.src = d.videoMp4;
+  document.getElementById('vm-title').textContent = d.title || d.videoTitle || '';
+  document.getElementById('vm-desc').textContent = d.blurb || '';
+  document.getElementById('vmodal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  v.play();
+}
+function closeVM(e) {
+  if (e && !e.target.classList.contains('vmodal') && !e.target.classList.contains('vmodal-close')) return;
+  const v = document.getElementById('vmodal-video');
+  v.pause(); v.src = '';
+  document.getElementById('vmodal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ─────────────────────────────────────────────────────────────
+//  Detail Modal
+// ─────────────────────────────────────────────────────────────
+function openDetail(idx) {
+  const d = allItems[idx];
+  const ac = agCls(d.agency);
+  const rc = resCls(d.resolution);
+  const rl = resLabel(d.resolution);
+  const src = d._source === 'aaro' ? 'AARO Official Imagery' : 'PURSUE Release 01';
+
+  const metaRows = [
+    ['Source', src],
+    ['Agency', d.agency],
+    ['Type', d._type === 'pdf' ? 'PDF Document' : d._type === 'image' ? 'Image' : 'Video'],
+    ['Resolution', d.resolution ? rl : null],
+    ['Location', d.incidentLocation],
+    ['Incident Date', d.incidentDate],
+    ['Released', d.releaseDate],
+  ].filter(r => r[1] && r[1] !== 'N/A' && r[1] !== '')
+   .map(r => `<tr><td>${r[0]}</td><td>${esc(r[1])}</td></tr>`).join('');
+
+  const actions = [
+    d._type==='pdf'   && d.url      ? `<a href="${esc(d.url)}" target="_blank" class="btn btn-pdf btn-lg">View PDF ↗</a>` : '',
+    d._type==='image' && d.url      ? `<a href="${esc(d.url)}" target="_blank" class="btn btn-img btn-lg">Full Resolution ↗</a>` : '',
+    d.videoMp4                      ? `<button class="btn btn-vid btn-lg" onclick="closeModal();playVideo(${idx})">▶ Play Video</button>` : '',
+    d.dvidUrl                       ? `<a href="${esc(d.dvidUrl)}" target="_blank" class="btn btn-vid btn-lg">DVIDS ↗</a>` : '',
+    d.videoId && !d.videoMp4        ? `<a href="https://www.dvidshub.net/video/${esc(d.videoId)}" target="_blank" class="btn btn-vid btn-lg">Watch ↗</a>` : '',
+    d.caseUrl                       ? `<a href="${esc(d.caseUrl)}" target="_blank" class="btn btn-case btn-lg">Case Resolution ↗</a>` : ''
+  ].filter(Boolean).join('');
+
+  const thumbHtml = d.thumb && d._type !== 'video'
+    ? `<img class="modal-thumb" src="${esc(d.thumb)}" alt="" onerror="this.style.display='none'">` : '';
+
+  document.getElementById('modal-inner').innerHTML = `
+    ${thumbHtml}
+    <div style="margin-bottom:10px">
+      <span class="badge ${ac}">${esc(d.agency||'Unknown')}</span>
+      ${rc ? `<span class="badge ${rc}">${rl}</span>` : ''}
+    </div>
+    <div class="modal-title">${esc(d.title||d.videoTitle||'Untitled')}</div>
+    <table class="modal-table"><tbody>${metaRows}</tbody></table>
+    ${d.blurb ? `<div class="modal-sec">Summary</div><p class="modal-text">${esc(d.blurb)}</p>` : ''}
+    ${d.officialBlurb ? `<div class="modal-sec">Official Description</div><p class="modal-official">${esc(d.officialBlurb)}</p>` : ''}
+    <div class="modal-actions">${actions}</div>
+  `;
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(e) {
+  if (e && !e.target.classList.contains('modal') && !e.target.classList.contains('modal-close')) return;
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Escape') return;
+  closeLB(); closeVM(); closeModal();
+  document.getElementById('modal').classList.remove('open');
+  document.getElementById('lb').classList.remove('open');
+  document.getElementById('vmodal').classList.remove('open');
+  document.body.style.overflow = '';
+});
+
+init();
+</script>
+</body>
+</html>
