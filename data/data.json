@@ -1,29 +1,31 @@
 {
   "meta": {
-    "generated": "2026-05-11T09:17:30.106Z",
+    "generated": "2026-05-11T09:23:49.599Z",
     "_schemaVersion": 1,
-    "totalRecords": 189,
+    "totalRecords": 249,
     "bySource": {
       "pursue_r01": 157,
-      "aaro": 32
+      "aaro": 32,
+      "geipan": 60
     },
     "byType": {
       "pdf": 115,
       "image": 14,
-      "video": 60
+      "video": 60,
+      "case": 60
     },
     "lastScraped": {
-      "pursue_r01": "2026-05-11T09:17:30.106Z",
-      "aaro": "2026-05-11T09:17:29.256Z",
-      "geipan": "2026-05-11T09:17:29.210Z",
-      "uk_na": "2026-05-11T09:17:29.210Z",
-      "brazil_af": "2026-05-11T09:17:29.211Z",
-      "canada_nrc": "2026-05-11T09:17:29.211Z",
-      "chile_cefaa": "2026-05-11T09:17:29.211Z",
-      "peru_difaa": "2026-05-11T09:17:29.211Z",
-      "uruguay_cridovni": "2026-05-11T09:17:29.211Z",
-      "australia_raaf": "2026-05-11T09:17:29.211Z",
-      "nz_rnzaf": "2026-05-11T09:17:29.211Z"
+      "pursue_r01": "2026-05-11T09:23:36.793Z",
+      "aaro": "2026-05-11T09:23:36.408Z",
+      "geipan": "2026-05-11T09:23:49.598Z",
+      "uk_na": "2026-05-11T09:23:36.388Z",
+      "brazil_af": "2026-05-11T09:23:36.388Z",
+      "canada_nrc": "2026-05-11T09:23:36.388Z",
+      "chile_cefaa": "2026-05-11T09:23:36.388Z",
+      "peru_difaa": "2026-05-11T09:23:36.388Z",
+      "uruguay_cridovni": "2026-05-11T09:23:36.388Z",
+      "australia_raaf": "2026-05-11T09:23:36.388Z",
+      "nz_rnzaf": "2026-05-11T09:23:36.388Z"
     }
   },
   "records": [
@@ -6973,6 +6975,1807 @@
         "caseUrl": null,
         "_type": "video",
         "_source": "aaro"
+      }
+    },
+    {
+      "id": "geipan_2026-01-51731",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "PAPEETE (987)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2026-01-12",
+      "incidentLocation": "PAPEETE (987)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2026-01-51731",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_A"
+      ],
+      "country": "FR",
+      "classification": "A",
+      "raw": {
+        "caseId": "2026-01-51731",
+        "rawTitle": "PAPEETE (987) 12.01.2026",
+        "rawDate": "12/01/2026",
+        "classLetter": "A",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2026-01-51730",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "DE BRIIS-SOUS-FORGES (91) VERS LIMOURS (91)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2026-01-01",
+      "incidentLocation": "DE BRIIS-SOUS-FORGES (91) VERS LIMOURS (91)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2026-01-51730",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_A",
+        "revisited"
+      ],
+      "country": "FR",
+      "classification": "A",
+      "raw": {
+        "caseId": "2026-01-51730",
+        "rawTitle": "[R] DE BRIIS-SOUS-FORGES (91) VERS LIMOURS (91) 01.01.2026",
+        "rawDate": "01/01/2026",
+        "classLetter": "A",
+        "isRevisited": true
+      }
+    },
+    {
+      "id": "geipan_2026-01-51724",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "RUMILLY (74)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2026-01-01",
+      "incidentLocation": "RUMILLY (74)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2026-01-51724",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_A"
+      ],
+      "country": "FR",
+      "classification": "A",
+      "raw": {
+        "caseId": "2026-01-51724",
+        "rawTitle": "RUMILLY (74) 01.01.2026",
+        "rawDate": "01/01/2026",
+        "classLetter": "A",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-12-51729",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "[AERO] de LOS ANGELES (US.90045) vers ROISSY-EN-FRANCE (95)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-12-16",
+      "incidentLocation": "[AERO] de LOS ANGELES (US.90045) vers ROISSY-EN-FRANCE (95)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-12-51729",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_A"
+      ],
+      "country": "FR",
+      "classification": "A",
+      "raw": {
+        "caseId": "2025-12-51729",
+        "rawTitle": "[AERO] de LOS ANGELES (US.90045) vers ROISSY-EN-FRANCE (95) 16.12.2025",
+        "rawDate": "16/12/2025",
+        "classLetter": "A",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-11-51716",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "HYERES (83)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-12-10",
+      "incidentLocation": "HYERES (83)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-11-51716",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_A"
+      ],
+      "country": "FR",
+      "classification": "A",
+      "raw": {
+        "caseId": "2025-11-51716",
+        "rawTitle": "HYERES (83) 10.12.2025",
+        "rawDate": "10/12/2025",
+        "classLetter": "A",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-12-51727",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "SAN-GAVINO-DI-TENDA (20)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-12-10",
+      "incidentLocation": "SAN-GAVINO-DI-TENDA (20)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-12-51727",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_A"
+      ],
+      "country": "FR",
+      "classification": "A",
+      "raw": {
+        "caseId": "2025-12-51727",
+        "rawTitle": "SAN-GAVINO-DI-TENDA (20) 10.12.2025",
+        "rawDate": "10/12/2025",
+        "classLetter": "A",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-11-51711",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "[AERO] de AMSTERDAM (NL.1118) vers NANTES (44)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-11-18",
+      "incidentLocation": "[AERO] de AMSTERDAM (NL.1118) vers NANTES (44)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-11-51711",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_A"
+      ],
+      "country": "FR",
+      "classification": "A",
+      "raw": {
+        "caseId": "2025-11-51711",
+        "rawTitle": "[AERO] de AMSTERDAM (NL.1118) vers NANTES (44) 18.11.2025",
+        "rawDate": "18/11/2025",
+        "classLetter": "A",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-11-51710",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "[AERO] DE AMSTERDAM (NL.1118) VERS NANTES (44)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-11-17",
+      "incidentLocation": "[AERO] DE AMSTERDAM (NL.1118) VERS NANTES (44)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-11-51710",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_A"
+      ],
+      "country": "FR",
+      "classification": "A",
+      "raw": {
+        "caseId": "2025-11-51710",
+        "rawTitle": "[AERO] DE AMSTERDAM (NL.1118) VERS NANTES (44) 17.11.2025",
+        "rawDate": "17/11/2025",
+        "classLetter": "A",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-11-51709",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "SAINT-SEVERIN (16)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-11-10",
+      "incidentLocation": "SAINT-SEVERIN (16)",
+      "releaseDate": null,
+      "resolution": "analysis",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-11-51709",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_C"
+      ],
+      "country": "FR",
+      "classification": "C",
+      "raw": {
+        "caseId": "2025-11-51709",
+        "rawTitle": "SAINT-SEVERIN (16) 10.11.2025",
+        "rawDate": "10/11/2025",
+        "classLetter": "C",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-11-51725",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "GRANDE-MOTTE (LA) (34)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-11-03",
+      "incidentLocation": "GRANDE-MOTTE (LA) (34)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-11-51725",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_A"
+      ],
+      "country": "FR",
+      "classification": "A",
+      "raw": {
+        "caseId": "2025-11-51725",
+        "rawTitle": "GRANDE-MOTTE (LA) (34) 03.11.2025",
+        "rawDate": "03/11/2025",
+        "classLetter": "A",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-11-51712",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "ELLECOURT (76)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-11-02",
+      "incidentLocation": "ELLECOURT (76)",
+      "releaseDate": null,
+      "resolution": "analysis",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-11-51712",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_C"
+      ],
+      "country": "FR",
+      "classification": "C",
+      "raw": {
+        "caseId": "2025-11-51712",
+        "rawTitle": "ELLECOURT (76) 02.11.2025",
+        "rawDate": "02/11/2025",
+        "classLetter": "C",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-10-51705",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "BRIENNE-SUR-AISNE (08)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-10-31",
+      "incidentLocation": "BRIENNE-SUR-AISNE (08)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-10-51705",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_A"
+      ],
+      "country": "FR",
+      "classification": "A",
+      "raw": {
+        "caseId": "2025-10-51705",
+        "rawTitle": "BRIENNE-SUR-AISNE (08) 31.10.2025",
+        "rawDate": "31/10/2025",
+        "classLetter": "A",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-10-51703",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "[D764] de SIZUN (29) vers LANDERNEAU (29)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-10-29",
+      "incidentLocation": "[D764] de SIZUN (29) vers LANDERNEAU (29)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-10-51703",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_A"
+      ],
+      "country": "FR",
+      "classification": "A",
+      "raw": {
+        "caseId": "2025-10-51703",
+        "rawTitle": "[D764] de SIZUN (29) vers LANDERNEAU (29) 29.10.2025",
+        "rawDate": "29/10/2025",
+        "classLetter": "A",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-10-51704",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "BISCHWILLER (67)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-10-12",
+      "incidentLocation": "BISCHWILLER (67)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-10-51704",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_B"
+      ],
+      "country": "FR",
+      "classification": "B",
+      "raw": {
+        "caseId": "2025-10-51704",
+        "rawTitle": "BISCHWILLER (67) 12.10.2025",
+        "rawDate": "12/10/2025",
+        "classLetter": "B",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-10-51708",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "COLOMIERS (31)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-10-09",
+      "incidentLocation": "COLOMIERS (31)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-10-51708",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_A"
+      ],
+      "country": "FR",
+      "classification": "A",
+      "raw": {
+        "caseId": "2025-10-51708",
+        "rawTitle": "COLOMIERS (31) 09.10.2025",
+        "rawDate": "09/10/2025",
+        "classLetter": "A",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-10-51702",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "TAMPON (LE) (974)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-10-04",
+      "incidentLocation": "TAMPON (LE) (974)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-10-51702",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_B"
+      ],
+      "country": "FR",
+      "classification": "B",
+      "raw": {
+        "caseId": "2025-10-51702",
+        "rawTitle": "TAMPON (LE) (974) 04.10.2025",
+        "rawDate": "04/10/2025",
+        "classLetter": "B",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-10-51701",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "SAINT-PAUL (974)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-10-03",
+      "incidentLocation": "SAINT-PAUL (974)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-10-51701",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_A"
+      ],
+      "country": "FR",
+      "classification": "A",
+      "raw": {
+        "caseId": "2025-10-51701",
+        "rawTitle": "SAINT-PAUL (974) 03.10.2025",
+        "rawDate": "03/10/2025",
+        "classLetter": "A",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-09-51692",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "MARLENHEIM (67)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-09-17",
+      "incidentLocation": "MARLENHEIM (67)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-09-51692",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_A"
+      ],
+      "country": "FR",
+      "classification": "A",
+      "raw": {
+        "caseId": "2025-09-51692",
+        "rawTitle": "MARLENHEIM (67) 17.09.2025",
+        "rawDate": "17/09/2025",
+        "classLetter": "A",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-09-51697",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "BETTON (35)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-09-15",
+      "incidentLocation": "BETTON (35)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-09-51697",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_A"
+      ],
+      "country": "FR",
+      "classification": "A",
+      "raw": {
+        "caseId": "2025-09-51697",
+        "rawTitle": "BETTON (35) 15.09.2025",
+        "rawDate": "15/09/2025",
+        "classLetter": "A",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-09-51688",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "ROQUEBRUNE-SUR-ARGENS (83)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-09-14",
+      "incidentLocation": "ROQUEBRUNE-SUR-ARGENS (83)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-09-51688",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_A"
+      ],
+      "country": "FR",
+      "classification": "A",
+      "raw": {
+        "caseId": "2025-09-51688",
+        "rawTitle": "ROQUEBRUNE-SUR-ARGENS (83) 14.09.2025",
+        "rawDate": "14/09/2025",
+        "classLetter": "A",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-09-51689",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "CACHAN (94)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-09-12",
+      "incidentLocation": "CACHAN (94)",
+      "releaseDate": null,
+      "resolution": "analysis",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-09-51689",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_C"
+      ],
+      "country": "FR",
+      "classification": "C",
+      "raw": {
+        "caseId": "2025-09-51689",
+        "rawTitle": "CACHAN (94) 12.09.2025",
+        "rawDate": "12/09/2025",
+        "classLetter": "C",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-09-51707",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "VINNEUF (89)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-09-06",
+      "incidentLocation": "VINNEUF (89)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-09-51707",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_A"
+      ],
+      "country": "FR",
+      "classification": "A",
+      "raw": {
+        "caseId": "2025-09-51707",
+        "rawTitle": "VINNEUF (89) 06.09.2025",
+        "rawDate": "06/09/2025",
+        "classLetter": "A",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-09-51693",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "SAINT-FRANCOIS (971)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-09-06",
+      "incidentLocation": "SAINT-FRANCOIS (971)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-09-51693",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_A"
+      ],
+      "country": "FR",
+      "classification": "A",
+      "raw": {
+        "caseId": "2025-09-51693",
+        "rawTitle": "SAINT-FRANCOIS (971) 06.09.2025",
+        "rawDate": "06/09/2025",
+        "classLetter": "A",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-09-51676",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "DOMMARTIN-LES-TOUL (54)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-09-04",
+      "incidentLocation": "DOMMARTIN-LES-TOUL (54)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-09-51676",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_A"
+      ],
+      "country": "FR",
+      "classification": "A",
+      "raw": {
+        "caseId": "2025-09-51676",
+        "rawTitle": "DOMMARTIN-LES-TOUL (54) 04.09.2025",
+        "rawDate": "04/09/2025",
+        "classLetter": "A",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-09-51684",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "SAINT-PRIEST-TAURION (87)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-09-03",
+      "incidentLocation": "SAINT-PRIEST-TAURION (87)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-09-51684",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_A"
+      ],
+      "country": "FR",
+      "classification": "A",
+      "raw": {
+        "caseId": "2025-09-51684",
+        "rawTitle": "SAINT-PRIEST-TAURION (87) 03.09.2025",
+        "rawDate": "03/09/2025",
+        "classLetter": "A",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-09-51674",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "VOUGEOT (21)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-09-03",
+      "incidentLocation": "VOUGEOT (21)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-09-51674",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_B"
+      ],
+      "country": "FR",
+      "classification": "B",
+      "raw": {
+        "caseId": "2025-09-51674",
+        "rawTitle": "VOUGEOT (21) 03.09.2025",
+        "rawDate": "03/09/2025",
+        "classLetter": "B",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-09-51681",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "BELLE-ISLE-EN-TERRE (22)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-09-01",
+      "incidentLocation": "BELLE-ISLE-EN-TERRE (22)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-09-51681",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_B"
+      ],
+      "country": "FR",
+      "classification": "B",
+      "raw": {
+        "caseId": "2025-09-51681",
+        "rawTitle": "BELLE-ISLE-EN-TERRE (22) 01.09.2025",
+        "rawDate": "01/09/2025",
+        "classLetter": "B",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-08-51686",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "METZ (57)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-08-30",
+      "incidentLocation": "METZ (57)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-08-51686",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_B"
+      ],
+      "country": "FR",
+      "classification": "B",
+      "raw": {
+        "caseId": "2025-08-51686",
+        "rawTitle": "METZ (57) 30.08.2025",
+        "rawDate": "30/08/2025",
+        "classLetter": "B",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-08-51713",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "NEUILLY-SUR-MARNE (93)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-08-26",
+      "incidentLocation": "NEUILLY-SUR-MARNE (93)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-08-51713",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_A"
+      ],
+      "country": "FR",
+      "classification": "A",
+      "raw": {
+        "caseId": "2025-08-51713",
+        "rawTitle": "NEUILLY-SUR-MARNE (93) 26.08.2025",
+        "rawDate": "26/08/2025",
+        "classLetter": "A",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-08-51687",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "COURONNE (LA) (16)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-08-21",
+      "incidentLocation": "COURONNE (LA) (16)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-08-51687",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_B"
+      ],
+      "country": "FR",
+      "classification": "B",
+      "raw": {
+        "caseId": "2025-08-51687",
+        "rawTitle": "COURONNE (LA) (16) 21.08.2025",
+        "rawDate": "21/08/2025",
+        "classLetter": "B",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-08-51670",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "NOUMEA (988)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-08-07",
+      "incidentLocation": "NOUMEA (988)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-08-51670",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_B"
+      ],
+      "country": "FR",
+      "classification": "B",
+      "raw": {
+        "caseId": "2025-08-51670",
+        "rawTitle": "NOUMEA (988) 07.08.2025",
+        "rawDate": "07/08/2025",
+        "classLetter": "B",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-08-51671",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "CHATEAU-RENAULT (37)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-08-04",
+      "incidentLocation": "CHATEAU-RENAULT (37)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-08-51671",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_A"
+      ],
+      "country": "FR",
+      "classification": "A",
+      "raw": {
+        "caseId": "2025-08-51671",
+        "rawTitle": "CHATEAU-RENAULT (37) 04.08.2025",
+        "rawDate": "04/08/2025",
+        "classLetter": "A",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-07-51669",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "SATELLITES — NATIONAL (FR)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-07-31",
+      "incidentLocation": "SATELLITES — NATIONAL (FR)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-07-51669",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_A"
+      ],
+      "country": "FR",
+      "classification": "A",
+      "raw": {
+        "caseId": "2025-07-51669",
+        "rawTitle": "SATELLITES — NATIONAL (FR) 31.07.2025",
+        "rawDate": "31/07/2025",
+        "classLetter": "A",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-07-51680",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "HAIE-FOUASSIERE (LA) (44)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-07-17",
+      "incidentLocation": "HAIE-FOUASSIERE (LA) (44)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-07-51680",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_B"
+      ],
+      "country": "FR",
+      "classification": "B",
+      "raw": {
+        "caseId": "2025-07-51680",
+        "rawTitle": "HAIE-FOUASSIERE (LA) (44) 17.07.2025",
+        "rawDate": "17/07/2025",
+        "classLetter": "B",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-07-51666",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "COULON (79)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-07-03",
+      "incidentLocation": "COULON (79)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-07-51666",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_B"
+      ],
+      "country": "FR",
+      "classification": "B",
+      "raw": {
+        "caseId": "2025-07-51666",
+        "rawTitle": "COULON (79) 03.07.2025",
+        "rawDate": "03/07/2025",
+        "classLetter": "B",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-06-51662",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "PARIS (75)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-06-22",
+      "incidentLocation": "PARIS (75)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-06-51662",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_A"
+      ],
+      "country": "FR",
+      "classification": "A",
+      "raw": {
+        "caseId": "2025-06-51662",
+        "rawTitle": "PARIS (75) 22.06.2025",
+        "rawDate": "22/06/2025",
+        "classLetter": "A",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-06-51675",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "FREJUS (83)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-06-18",
+      "incidentLocation": "FREJUS (83)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-06-51675",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_B"
+      ],
+      "country": "FR",
+      "classification": "B",
+      "raw": {
+        "caseId": "2025-06-51675",
+        "rawTitle": "FREJUS (83) 18.06.2025",
+        "rawDate": "18/06/2025",
+        "classLetter": "B",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-05-51653",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "TOURNEFEUILLE (31)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-05-17",
+      "incidentLocation": "TOURNEFEUILLE (31)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-05-51653",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_B"
+      ],
+      "country": "FR",
+      "classification": "B",
+      "raw": {
+        "caseId": "2025-05-51653",
+        "rawTitle": "TOURNEFEUILLE (31) 17.05.2025",
+        "rawDate": "17/05/2025",
+        "classLetter": "B",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-05-51647",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "COUETRON-AU-PERCHE (47)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-05-17",
+      "incidentLocation": "COUETRON-AU-PERCHE (47)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-05-51647",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_B"
+      ],
+      "country": "FR",
+      "classification": "B",
+      "raw": {
+        "caseId": "2025-05-51647",
+        "rawTitle": "COUETRON-AU-PERCHE (47) 17.05.2025",
+        "rawDate": "17/05/2025",
+        "classLetter": "B",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-05-51649",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "NICE (06)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-05-14",
+      "incidentLocation": "NICE (06)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-05-51649",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_B"
+      ],
+      "country": "FR",
+      "classification": "B",
+      "raw": {
+        "caseId": "2025-05-51649",
+        "rawTitle": "NICE (06) 14.05.2025",
+        "rawDate": "14/05/2025",
+        "classLetter": "B",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-05-51660",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "LOCTUDY (29)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-05-13",
+      "incidentLocation": "LOCTUDY (29)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-05-51660",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_A"
+      ],
+      "country": "FR",
+      "classification": "A",
+      "raw": {
+        "caseId": "2025-05-51660",
+        "rawTitle": "LOCTUDY (29) 13.05.2025",
+        "rawDate": "13/05/2025",
+        "classLetter": "A",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-05-51648",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "METZ (57)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-05-10",
+      "incidentLocation": "METZ (57)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-05-51648",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_B"
+      ],
+      "country": "FR",
+      "classification": "B",
+      "raw": {
+        "caseId": "2025-05-51648",
+        "rawTitle": "METZ (57) 10.05.2025",
+        "rawDate": "10/05/2025",
+        "classLetter": "B",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-04-51639",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "POINTEL (61)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-04-29",
+      "incidentLocation": "POINTEL (61)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-04-51639",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_A"
+      ],
+      "country": "FR",
+      "classification": "A",
+      "raw": {
+        "caseId": "2025-04-51639",
+        "rawTitle": "POINTEL (61) 29.04.2025",
+        "rawDate": "29/04/2025",
+        "classLetter": "A",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-04-51643",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "[AERO] DE MARSEILLE (13) VERS TUNIS (TUN)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-04-27",
+      "incidentLocation": "[AERO] DE MARSEILLE (13) VERS TUNIS (TUN)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-04-51643",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_A"
+      ],
+      "country": "FR",
+      "classification": "A",
+      "raw": {
+        "caseId": "2025-04-51643",
+        "rawTitle": "[AERO] DE MARSEILLE (13) VERS TUNIS (TUN) 27.04.2025",
+        "rawDate": "27/04/2025",
+        "classLetter": "A",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-04-51635",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "[A620] DE TOULOUSE (31) VERS MONTAUBAN (82)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-04-13",
+      "incidentLocation": "[A620] DE TOULOUSE (31) VERS MONTAUBAN (82)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-04-51635",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_A"
+      ],
+      "country": "FR",
+      "classification": "A",
+      "raw": {
+        "caseId": "2025-04-51635",
+        "rawTitle": "[A620] DE TOULOUSE (31) VERS MONTAUBAN (82) 13.04.2025",
+        "rawDate": "13/04/2025",
+        "classLetter": "A",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-04-51638",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "LUGNY-CHAMPAGNE (18)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-04-08",
+      "incidentLocation": "LUGNY-CHAMPAGNE (18)",
+      "releaseDate": null,
+      "resolution": "analysis",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-04-51638",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_C"
+      ],
+      "country": "FR",
+      "classification": "C",
+      "raw": {
+        "caseId": "2025-04-51638",
+        "rawTitle": "LUGNY-CHAMPAGNE (18) 08.04.2025",
+        "rawDate": "08/04/2025",
+        "classLetter": "C",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-03-51637",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "VEYRIER (GENEVE.CH )",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-03-26",
+      "incidentLocation": "VEYRIER (GENEVE.CH )",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-03-51637",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_A"
+      ],
+      "country": "FR",
+      "classification": "A",
+      "raw": {
+        "caseId": "2025-03-51637",
+        "rawTitle": "VEYRIER (GENEVE.CH ) 26.03.2025",
+        "rawDate": "26/03/2025",
+        "classLetter": "A",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-03-51657",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "BEAUMONT-SUR-SARTHE (72)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-03-22",
+      "incidentLocation": "BEAUMONT-SUR-SARTHE (72)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-03-51657",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_A"
+      ],
+      "country": "FR",
+      "classification": "A",
+      "raw": {
+        "caseId": "2025-03-51657",
+        "rawTitle": "BEAUMONT-SUR-SARTHE (72) 22.03.2025",
+        "rawDate": "22/03/2025",
+        "classLetter": "A",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-03-51629",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "SAINT-PRYVE-SAINT-MESMIN (45)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-03-09",
+      "incidentLocation": "SAINT-PRYVE-SAINT-MESMIN (45)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-03-51629",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_B"
+      ],
+      "country": "FR",
+      "classification": "B",
+      "raw": {
+        "caseId": "2025-03-51629",
+        "rawTitle": "SAINT-PRYVE-SAINT-MESMIN (45) 09.03.2025",
+        "rawDate": "09/03/2025",
+        "classLetter": "B",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-03-51630",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "VICQ (52)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-03-06",
+      "incidentLocation": "VICQ (52)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-03-51630",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_A"
+      ],
+      "country": "FR",
+      "classification": "A",
+      "raw": {
+        "caseId": "2025-03-51630",
+        "rawTitle": "VICQ (52) 06.03.2025",
+        "rawDate": "06/03/2025",
+        "classLetter": "A",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-03-51627",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "VALS-DES-TILLES (52)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-03-02",
+      "incidentLocation": "VALS-DES-TILLES (52)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-03-51627",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_A"
+      ],
+      "country": "FR",
+      "classification": "A",
+      "raw": {
+        "caseId": "2025-03-51627",
+        "rawTitle": "VALS-DES-TILLES (52) 02.03.2025",
+        "rawDate": "02/03/2025",
+        "classLetter": "A",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-03-51622",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "ESPIRA-DE-L'AGLY (66)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-03-01",
+      "incidentLocation": "ESPIRA-DE-L'AGLY (66)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-03-51622",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_A"
+      ],
+      "country": "FR",
+      "classification": "A",
+      "raw": {
+        "caseId": "2025-03-51622",
+        "rawTitle": "ESPIRA-DE-L'AGLY (66) 01.03.2025",
+        "rawDate": "01/03/2025",
+        "classLetter": "A",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-02-51628",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "SAINT-PIERRE (974)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-02-25",
+      "incidentLocation": "SAINT-PIERRE (974)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-02-51628",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_A"
+      ],
+      "country": "FR",
+      "classification": "A",
+      "raw": {
+        "caseId": "2025-02-51628",
+        "rawTitle": "SAINT-PIERRE (974) 25.02.2025",
+        "rawDate": "25/02/2025",
+        "classLetter": "A",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-02-51626",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "VALRAS-PLAGE (34)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-02-20",
+      "incidentLocation": "VALRAS-PLAGE (34)",
+      "releaseDate": null,
+      "resolution": "analysis",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-02-51626",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_C"
+      ],
+      "country": "FR",
+      "classification": "C",
+      "raw": {
+        "caseId": "2025-02-51626",
+        "rawTitle": "VALRAS-PLAGE (34) 20.02.2025",
+        "rawDate": "20/02/2025",
+        "classLetter": "C",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-02-51620",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "AVESNES-LES-AUBERT (59)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-02-01",
+      "incidentLocation": "AVESNES-LES-AUBERT (59)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-02-51620",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_A"
+      ],
+      "country": "FR",
+      "classification": "A",
+      "raw": {
+        "caseId": "2025-02-51620",
+        "rawTitle": "AVESNES-LES-AUBERT (59) 01.02.2025",
+        "rawDate": "01/02/2025",
+        "classLetter": "A",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-01-51722",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "ARTIGUES-PRES-BORDEAUX (33)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-01-25",
+      "incidentLocation": "ARTIGUES-PRES-BORDEAUX (33)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-01-51722",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_B"
+      ],
+      "country": "FR",
+      "classification": "B",
+      "raw": {
+        "caseId": "2025-01-51722",
+        "rawTitle": "ARTIGUES-PRES-BORDEAUX (33) 25.01.2025",
+        "rawDate": "25/01/2025",
+        "classLetter": "B",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-01-51636",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "PUILBOREAU (17)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-01-18",
+      "incidentLocation": "PUILBOREAU (17)",
+      "releaseDate": null,
+      "resolution": "analysis",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-01-51636",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_C"
+      ],
+      "country": "FR",
+      "classification": "C",
+      "raw": {
+        "caseId": "2025-01-51636",
+        "rawTitle": "PUILBOREAU (17) 18.01.2025",
+        "rawDate": "18/01/2025",
+        "classLetter": "C",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-01-51610",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "JULOS (65)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-01-09",
+      "incidentLocation": "JULOS (65)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-01-51610",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_A"
+      ],
+      "country": "FR",
+      "classification": "A",
+      "raw": {
+        "caseId": "2025-01-51610",
+        "rawTitle": "JULOS (65) 09.01.2025",
+        "rawDate": "09/01/2025",
+        "classLetter": "A",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-01-51677",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "NOISY-LE-GRAND (93)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-01-06",
+      "incidentLocation": "NOISY-LE-GRAND (93)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-01-51677",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_A"
+      ],
+      "country": "FR",
+      "classification": "A",
+      "raw": {
+        "caseId": "2025-01-51677",
+        "rawTitle": "NOISY-LE-GRAND (93) 06.01.2025",
+        "rawDate": "06/01/2025",
+        "classLetter": "A",
+        "isRevisited": false
+      }
+    },
+    {
+      "id": "geipan_2025-01-51619",
+      "_source": "geipan",
+      "_type": "case",
+      "title": "PERPIGNAN (66)",
+      "agency": "GEIPAN / CNES",
+      "incidentDate": "2025-01-04",
+      "incidentLocation": "PERPIGNAN (66)",
+      "releaseDate": null,
+      "resolution": "resolved",
+      "blurb": null,
+      "officialBlurb": null,
+      "url": "https://www.cnes-geipan.fr/fr/cas/2025-01-51619",
+      "fileUrl": null,
+      "videoMp4": null,
+      "thumb": null,
+      "tags": [
+        "lang:fr",
+        "geipan_class_A"
+      ],
+      "country": "FR",
+      "classification": "A",
+      "raw": {
+        "caseId": "2025-01-51619",
+        "rawTitle": "PERPIGNAN (66) 04.01.2025",
+        "rawDate": "04/01/2025",
+        "classLetter": "A",
+        "isRevisited": false
       }
     }
   ]

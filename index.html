@@ -239,7 +239,7 @@
   <button class="src-btn active" onclick="setSource('all',this)">🌐 All Sources <span class="cnt" id="sc-all">—</span></button>
   <button class="src-btn" onclick="setSource('pursue_r01',this)">🇺🇸 PURSUE Release 01 <span class="cnt" id="sc-pursue">162</span></button>
   <button class="src-btn" onclick="setSource('aaro',this)">🇺🇸 AARO Imagery <span class="cnt" id="sc-aaro">28</span></button>
-  <span class="src-future">🇫🇷 GEIPAN (coming)</span>
+  <button class="src-btn" onclick="setSource('geipan',this)">🇫🇷 GEIPAN <span class="cnt" id="sc-geipan">0</span></button>
   <span class="src-future">🇬🇧 UK Nat. Archives (coming)</span>
   <span class="src-future">🇧🇷 Brazil AF (coming)</span>
   <button class="src-btn" onclick="setSource('intl',this)">🌍 International Directory</button>
@@ -363,6 +363,7 @@ const API_URL = window.location.hostname === 'localhost' || window.location.prot
   : 'https://cdn.jsdelivr.net/gh/JGM-89/ufo-aggregator@master/data/data.json';
 let pursueItems = [];
 let aaroItems = [];
+let geipanItems = [];
 let activeSource = 'all';
 let activeTab = 'all';
 let allItems = [];
@@ -383,6 +384,7 @@ async function init() {
     }));
     pursueItems = records.filter(x => x._source === 'pursue_r01');
     aaroItems   = records.filter(x => x._source === 'aaro');
+    geipanItems = records.filter(x => x._source === 'geipan');
     allItems    = records;
   } catch(e) {
     document.getElementById('err').style.display = 'block';
@@ -394,6 +396,7 @@ async function init() {
   document.getElementById('sc-all').textContent = allItems.length;
   document.getElementById('sc-pursue').textContent = pursueItems.length;
   document.getElementById('sc-aaro').textContent = aaroItems.length;
+  document.getElementById('sc-geipan').textContent = geipanItems.length;
 
   document.getElementById('loading').style.display = 'none';
   document.getElementById('content').style.display = 'block';
@@ -446,6 +449,7 @@ function applyFilters() {
   let pool = activeSource === 'all'         ? allItems
            : activeSource === 'pursue_r01'  ? pursueItems
            : activeSource === 'aaro'        ? aaroItems
+           : activeSource === 'geipan'      ? geipanItems
            : allItems;
 
   // Tab filter
@@ -482,7 +486,7 @@ function applyFilters() {
   }
 
   // Update tab counts
-  const basePool = (activeSource === 'all' ? allItems : activeSource === 'pursue_r01' ? pursueItems : activeSource === 'aaro' ? aaroItems : allItems);
+  const basePool = (activeSource === 'all' ? allItems : activeSource === 'pursue_r01' ? pursueItems : activeSource === 'aaro' ? aaroItems : activeSource === 'geipan' ? geipanItems : allItems);
   document.getElementById('c-all').textContent  = basePool.length;
   document.getElementById('c-pdfs').textContent = basePool.filter(x=>x._type==='pdf').length;
   document.getElementById('c-imgs').textContent = basePool.filter(x=>x._type==='image').length;
