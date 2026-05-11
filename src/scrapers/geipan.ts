@@ -38,8 +38,16 @@ import type { UAPRecord, Resolution } from '../schema';
 const log = makeLogger('geipan');
 
 const BASE = 'https://www.cnes-geipan.fr';
-const LISTING = `${BASE}/recherche/cas`;
-const PAGES_TO_FETCH = 10; // 6 cases/page → ~60 cases
+// Classification taxonomy IDs (from search form):
+//   A=11, B=12, C=13, D=14, D1=15, D2=16
+// We filter to D + D1 + D2 — "unknown with sufficient data" = the genuinely
+// unresolved cases (the highest-research-value subset).
+const D_CLASS_FILTER =
+  'field_classification_des_cas_target_id%5B0%5D=14' +
+  '&field_classification_des_cas_target_id%5B1%5D=15' +
+  '&field_classification_des_cas_target_id%5B2%5D=16';
+const LISTING = `${BASE}/recherche/cas?${D_CLASS_FILTER}`;
+const PAGES_TO_FETCH = 12; // 6 cases/page → ~70 D-class cases (scraper auto-stops on empty)
 const PAGE_DELAY_MS = 500;
 
 interface RawCase {
@@ -109,10 +117,10 @@ function parseDateFrench(s: string): string | null {
 
 async function fetchPage(pageIdx: number): Promise<string | null> {
   // GEIPAN's Drupal listing uses a multi-pager with comma-prefixed page param:
-  //   ?page=,0  → page 1
-  //   ?page=,1  → page 2
-  // A plain `?page=N` (without the comma) returns the same first page.
-  const url = pageIdx === 0 ? LISTING : `${LISTING}?page=,${pageIdx}`;
+  //   page=,0  → page 1
+  //   page=,1  → page 2
+  // A plain `page=N` (without the comma) returns the same first page.
+  const url = pageIdx === 0 ? LISTING : `${LISTING}&page=,${pageIdx}`;
   try {
     const res = await http.get<string>(url, { responseType: 'text' });
     return res.data;

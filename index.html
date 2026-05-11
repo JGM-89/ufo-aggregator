@@ -240,7 +240,7 @@
   <button class="src-btn" onclick="setSource('pursue_r01',this)">🇺🇸 PURSUE Release 01 <span class="cnt" id="sc-pursue">162</span></button>
   <button class="src-btn" onclick="setSource('aaro',this)">🇺🇸 AARO Imagery <span class="cnt" id="sc-aaro">28</span></button>
   <button class="src-btn" onclick="setSource('geipan',this)">🇫🇷 GEIPAN <span class="cnt" id="sc-geipan">0</span></button>
-  <span class="src-future">🇬🇧 UK Nat. Archives (coming)</span>
+  <button class="src-btn" onclick="setSource('uk_na',this)">🇬🇧 UK Nat. Archives <span class="cnt" id="sc-uk-na">0</span></button>
   <span class="src-future">🇧🇷 Brazil AF (coming)</span>
   <button class="src-btn" onclick="setSource('intl',this)">🌍 International Directory</button>
 </div>
@@ -364,6 +364,7 @@ const API_URL = window.location.hostname === 'localhost' || window.location.prot
 let pursueItems = [];
 let aaroItems = [];
 let geipanItems = [];
+let ukNaItems = [];
 let activeSource = 'all';
 let activeTab = 'all';
 let allItems = [];
@@ -376,15 +377,18 @@ async function init() {
     const r = await fetch(API_URL);
     if (!r.ok) throw new Error('HTTP ' + r.status);
     const d = await r.json();
-    // Hoist source-specific raw fields the renderer expects (dvidUrl, caseUrl for AARO).
+    // Hoist source-specific raw fields the renderer expects.
     const records = (d.records || []).map(x => ({
       ...x,
-      dvidUrl: x.raw && x.raw.dvidUrl ? x.raw.dvidUrl : null,
-      caseUrl: x.raw && x.raw.caseUrl ? x.raw.caseUrl : (x._source === 'aaro' ? x.fileUrl : null),
+      dvidUrl:   x.raw && x.raw.dvidUrl   ? x.raw.dvidUrl   : null,
+      caseUrl:   x.raw && x.raw.caseUrl   ? x.raw.caseUrl   : (x._source === 'aaro' ? x.fileUrl : null),
+      aiSummary: x.raw && x.raw.aiSummary ? x.raw.aiSummary : null,
+      videoId:   x.raw && x.raw.videoId   ? x.raw.videoId   : null,
     }));
     pursueItems = records.filter(x => x._source === 'pursue_r01');
     aaroItems   = records.filter(x => x._source === 'aaro');
     geipanItems = records.filter(x => x._source === 'geipan');
+    ukNaItems   = records.filter(x => x._source === 'uk_na');
     allItems    = records;
   } catch(e) {
     document.getElementById('err').style.display = 'block';
@@ -397,6 +401,7 @@ async function init() {
   document.getElementById('sc-pursue').textContent = pursueItems.length;
   document.getElementById('sc-aaro').textContent = aaroItems.length;
   document.getElementById('sc-geipan').textContent = geipanItems.length;
+  document.getElementById('sc-uk-na').textContent = ukNaItems.length;
 
   document.getElementById('loading').style.display = 'none';
   document.getElementById('content').style.display = 'block';
@@ -450,6 +455,7 @@ function applyFilters() {
            : activeSource === 'pursue_r01'  ? pursueItems
            : activeSource === 'aaro'        ? aaroItems
            : activeSource === 'geipan'      ? geipanItems
+           : activeSource === 'uk_na'       ? ukNaItems
            : allItems;
 
   // Tab filter
@@ -486,7 +492,7 @@ function applyFilters() {
   }
 
   // Update tab counts
-  const basePool = (activeSource === 'all' ? allItems : activeSource === 'pursue_r01' ? pursueItems : activeSource === 'aaro' ? aaroItems : activeSource === 'geipan' ? geipanItems : allItems);
+  const basePool = (activeSource === 'all' ? allItems : activeSource === 'pursue_r01' ? pursueItems : activeSource === 'aaro' ? aaroItems : activeSource === 'geipan' ? geipanItems : activeSource === 'uk_na' ? ukNaItems : allItems);
   document.getElementById('c-all').textContent  = basePool.length;
   document.getElementById('c-pdfs').textContent = basePool.filter(x=>x._type==='pdf').length;
   document.getElementById('c-imgs').textContent = basePool.filter(x=>x._type==='image').length;
@@ -590,9 +596,12 @@ function cardHTML(item, idx) {
     mediaHtml = `<div class="card-no-thumb">${type==='pdf'?'📄':type==='image'?'🖼️':'📹'}</div>`;
   }
 
-  const srcBadge = src === 'pursue_r01'
-    ? '<span class="badge b-dow" style="font-size:8px">PURSUE R01</span>'
-    : '<span class="badge b-aaro" style="font-size:8px">AARO</span>';
+  const srcBadge =
+    src === 'pursue_r01' ? '<span class="badge b-dow" style="font-size:8px">PURSUE R01</span>' :
+    src === 'aaro'       ? '<span class="badge b-aaro" style="font-size:8px">AARO</span>' :
+    src === 'geipan'     ? '<span class="badge" style="font-size:8px;background:#1a3a5c;color:#7dd3fc">GEIPAN</span>' :
+    src === 'uk_na'      ? '<span class="badge" style="font-size:8px;background:#3a1a3a;color:#f0abfc">UK NA</span>' :
+    `<span class="badge" style="font-size:8px">${esc((src||'').toUpperCase())}</span>`;
 
   const meta = [
     item.incidentLocation && item.incidentLocation !== 'N/A' ? `<span>📍 ${esc(item.incidentLocation)}</span>` : '',
@@ -723,6 +732,7 @@ function openDetail(idx) {
     <div class="modal-title">${esc(d.title||d.videoTitle||'Untitled')}</div>
     <table class="modal-table"><tbody>${metaRows}</tbody></table>
     ${d.blurb ? `<div class="modal-sec">Summary</div><p class="modal-text">${esc(d.blurb)}</p>` : ''}
+    ${d.aiSummary ? `<div class="modal-sec">AI Summary <span style="opacity:0.5;font-size:9px;font-weight:normal">(generated)</span></div><p class="modal-text">${esc(d.aiSummary)}</p>` : ''}
     ${d.officialBlurb ? `<div class="modal-sec">Official Description</div><p class="modal-official">${esc(d.officialBlurb)}</p>` : ''}
     <div class="modal-actions">${actions}</div>
   `;
